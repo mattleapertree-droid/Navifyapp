@@ -383,6 +383,34 @@ function setLiveData(data) {
   localStorage.setItem(LIVE_KEY, JSON.stringify(data));
 }
 
+function renderContacts() {
+  if (!contactList) return;
+  contactList.innerHTML = '';
+  const contacts = getContacts();
+  const live = getLiveData();
+  if (!contacts.length) {
+    const empty = document.createElement('div');
+    empty.className = 'map-description';
+    empty.textContent = 'No trusted contacts yet. Tap + to invite someone.';
+    contactList.appendChild(empty);
+    return;
+  }
+  contacts.forEach((email) => {
+    const card = document.createElement('div');
+    card.className = 'contact-item';
+    const label = document.createElement('span');
+    label.textContent = email;
+    const status = document.createElement('span');
+    const data = live[email];
+    status.textContent = data && data.updatedAt
+      ? `Updated ${Math.round((Date.now() - data.updatedAt) / 60000)}m ago`
+      : 'Waiting for location';
+    card.appendChild(label);
+    card.appendChild(status);
+    contactList.appendChild(card);
+  });
+}
+
 function initMap() {
   if (!mapEl || map || typeof L === 'undefined') return;
   map = L.map(mapEl, { zoomControl: true }).setView([14.5995, 120.9842], 12);
