@@ -395,10 +395,11 @@ function initMap() {
     attribution: ''
   }).addTo(map);
   map.on('click', (e) => {
+    const existingLabel = destinationInput?.value.trim();
     if (destinationInput) {
       destinationInput.value = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
     }
-    const label = destinationInput?.value.trim() || 'Selected location';
+    const label = existingLabel || destinationInput?.value.trim() || 'Selected location';
     const target = { lat: e.latlng.lat, lng: e.latlng.lng, label };
     localStorage.setItem('navify-guide-target', JSON.stringify(target));
     drawRoute(target.lat, target.lng, true);
