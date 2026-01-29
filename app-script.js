@@ -203,6 +203,8 @@ let lastProximityAlertAt = 0;
 let lastProximityContact = '';
 let lastRouteTarget = null;
 let pushEnabled = false;
+let mapTapCount = 0;
+let lastMapTapAt = 0;
 
 const tripIdeaSets = {
   'Beach trips': [
@@ -394,11 +396,22 @@ function initMap() {
     if (destinationInput) {
       destinationInput.value = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
     }
-    const target = { lat: e.latlng.lat, lng: e.latlng.lng, label: 'Selected location' };
+    const label = destinationInput?.value.trim() || 'Selected location';
+    const target = { lat: e.latlng.lat, lng: e.latlng.lng, label };
     localStorage.setItem('navify-guide-target', JSON.stringify(target));
     drawRoute(target.lat, target.lng, true);
     if (mapDescription) {
-      mapDescription.textContent = 'Destination set from map. Tap "Guide me there" to open guide mode.';
+      mapDescription.textContent = 'Destination set from map. Tap "Guide me there" or tap the map 3 times to open guide mode.';
+    }
+    const now = Date.now();
+    if (now - lastMapTapAt > 2500) {
+      mapTapCount = 0;
+    }
+    lastMapTapAt = now;
+    mapTapCount += 1;
+    if (mapTapCount >= 3) {
+      mapTapCount = 0;
+      window.location.href = 'guide.html';
     }
   });
 }
