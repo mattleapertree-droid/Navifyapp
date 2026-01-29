@@ -54,6 +54,8 @@ const LIVE_KEY = 'navify-live-contacts';
 const CONTACT_KEY = 'navify-contacts';
 const NAME_KEY = 'navify-name';
 const FAVORITES_KEY = 'navify-favorites';
+const GUIDE_TAP_COUNT = 3;
+const GUIDE_TAP_TIMEOUT_MS = 2500;
 
 avatarBtn?.addEventListener('click', () => openModal(avatarModal));
 transportCard?.addEventListener('click', () => openModal(transportModal));
@@ -203,6 +205,8 @@ let lastProximityAlertAt = 0;
 let lastProximityContact = '';
 let lastRouteTarget = null;
 let pushEnabled = false;
+let mapTapCount = 0;
+let lastMapTapAt = 0;
 
 const tripIdeaSets = {
   'Beach trips': [
@@ -391,15 +395,30 @@ function initMap() {
     attribution: ''
   }).addTo(map);
   map.on('click', (e) => {
+    const existingLabel = destinationInput?.value.trim();
+    const coordLabel = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
     if (destinationInput) {
-      destinationInput.value = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
+      destinationInput.value = coordLabel;
     }
-    const target = { lat: e.latlng.lat, lng: e.latlng.lng, label: 'Selected location' };
+    const label = existingLabel || coordLabel || 'Selected location';
+    const target = { lat: e.latlng.lat, lng: e.latlng.lng, label };
     localStorage.setItem('navify-guide-target', JSON.stringify(target));
-    drawRoute(target.lat, target.lng, true);
     if (mapDescription) {
-      mapDescription.textContent = 'Destination set from map. Tap the map again to open guide mode.';
+      mapDescription.textContent = 'Destination set from map. Tap "Guide me there" or tap the map 3 times to open guide mode.';
     }
+    const now = Date.now();
+    if (now - lastMapTapAt > GUIDE_TAP_TIMEOUT_MS) {
+      mapTapCount = 0;
+    }
+    mapTapCount += 1;
+    lastMapTapAt = now;
+    if (mapTapCount >= GUIDE_TAP_COUNT) {
+      mapTapCount = 0;
+      lastMapTapAt = 0;
+      window.location.href = 'guide.html';
+      return;
+    }
+    drawRoute(target.lat, target.lng, true);
   });
 }
 
@@ -922,14 +941,32 @@ walkRouteBtn?.addEventListener('click', () => {
       else b.classList.remove('active');
     });
   }
-  if (!userMarker || !lastRouteTarget) {
+  const storedTarget = localStorage.getItem('navify-guide-target');
+  let parsedTarget = null;
+  if (storedTarget) {
+    try {
+      parsedTarget = JSON.parse(storedTarget);
+    } catch (error) {
+      parsedTarget = null;
+    }
+  }
+  const target = lastRouteTarget || parsedTarget;
+  const hasValidTarget = target &&
+    typeof target.lat === 'number' &&
+    typeof target.lng === 'number' &&
+    !Number.isNaN(target.lat) &&
+    !Number.isNaN(target.lng);
+  if (!hasValidTarget) {
     if (mapDescription) {
-      mapDescription.textContent = 'Tap on the map or choose a Trip idea first, then press "Start walking route".';
+      mapDescription.textContent = 'Tap on the map or choose a Trip idea first, then press "Guide me there".';
     }
     updateEtaLabel();
     return;
   }
-  drawRoute(lastRouteTarget.lat, lastRouteTarget.lng, true);
+  const trimmedLabel = destinationInput?.value.trim();
+  const label = trimmedLabel || target.label || 'Destination';
+  localStorage.setItem('navify-guide-target', JSON.stringify({ lat: target.lat, lng: target.lng, label }));
+  window.location.href = 'guide.html';
 });
 
 function initPushToggle() {

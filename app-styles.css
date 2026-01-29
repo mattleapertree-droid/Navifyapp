@@ -714,7 +714,7 @@ body.theme-light .toggle {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   cursor: pointer;
-  display: none;
+  display: inline-flex;
 }
 
 body.theme-light .map-chip {
