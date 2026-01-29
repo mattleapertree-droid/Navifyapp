@@ -923,9 +923,24 @@ walkRouteBtn?.addEventListener('click', () => {
     });
   }
   const storedTarget = localStorage.getItem('navify-guide-target');
-  const parsedTarget = storedTarget ? JSON.parse(storedTarget) : null;
-  const target = lastRouteTarget || parsedTarget || { lat: 14.5995, lng: 120.9842, label: 'Destination' };
-  const label = destinationInput?.value.trim() || target.label || 'Destination';
+  let parsedTarget = null;
+  if (storedTarget) {
+    try {
+      parsedTarget = JSON.parse(storedTarget);
+    } catch (error) {
+      parsedTarget = null;
+    }
+  }
+  const target = lastRouteTarget || parsedTarget;
+  if (!target) {
+    if (mapDescription) {
+      mapDescription.textContent = 'Tap on the map or choose a Trip idea first, then press "Guide me there".';
+    }
+    updateEtaLabel();
+    return;
+  }
+  const trimmedLabel = destinationInput?.value.trim();
+  const label = trimmedLabel || target.label || 'Destination';
   localStorage.setItem('navify-guide-target', JSON.stringify({ lat: target.lat, lng: target.lng, label }));
   window.location.href = 'guide.html';
 });
