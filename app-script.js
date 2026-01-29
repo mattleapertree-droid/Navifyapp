@@ -396,13 +396,13 @@ function initMap() {
   }).addTo(map);
   map.on('click', (e) => {
     const existingLabel = destinationInput?.value.trim();
+    const coordLabel = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
     if (destinationInput) {
-      destinationInput.value = `Lat ${e.latlng.lat.toFixed(4)}, Lng ${e.latlng.lng.toFixed(4)}`;
+      destinationInput.value = coordLabel;
     }
-    const label = existingLabel || destinationInput?.value.trim() || 'Selected location';
+    const label = existingLabel || coordLabel || 'Selected location';
     const target = { lat: e.latlng.lat, lng: e.latlng.lng, label };
     localStorage.setItem('navify-guide-target', JSON.stringify(target));
-    drawRoute(target.lat, target.lng, true);
     if (mapDescription) {
       mapDescription.textContent = 'Destination set from map. Tap "Guide me there" or tap the map 3 times to open guide mode.';
     }
@@ -414,8 +414,11 @@ function initMap() {
     lastMapTapAt = now;
     if (mapTapCount >= GUIDE_TAP_COUNT) {
       mapTapCount = 0;
+      lastMapTapAt = 0;
       window.location.href = 'guide.html';
+      return;
     }
+    drawRoute(target.lat, target.lng, true);
   });
 }
 
