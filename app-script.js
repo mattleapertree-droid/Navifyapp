@@ -808,6 +808,11 @@ function renderTripPlaces(category) {
     img.className = 'trip-place-image';
     img.src = place.image;
     img.alt = place.name;
+    img.addEventListener('error', () => {
+      if (img.dataset.fallback) return;
+      img.dataset.fallback = 'true';
+      img.src = 'assets/1.png';
+    });
 
     const main = document.createElement('div');
     main.className = 'trip-place-main';

@@ -781,7 +781,6 @@ body.theme-light .map-chip {
 
 .trip-guide-btn {
   flex: 1 1 100%;
-  justify-self: stretch;
 }
 
 body.theme-light .trip-place-card {

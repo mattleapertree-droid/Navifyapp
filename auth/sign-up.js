@@ -19,7 +19,7 @@ function bindSignUp() {
       return;
     }
     if (!termsConsent?.checked) {
-      alert('Please agree to the Navify Terms & Conditions, including camera and location consent.');
+      alert('Please agree to the Terms & Conditions to continue.');
       return;
     }
     try {
