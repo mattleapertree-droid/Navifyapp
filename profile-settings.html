@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Settings</title>
+  <link rel="stylesheet" href="CSS%20KO%20ITO%20SA%20APP.css" />
+</head>
+<body>
+  <main class="scene" aria-label="Profile Settings">
+    <div class="home" aria-label="Profile settings content">
+      <header class="home-header">
+        <div class="greeting">
+          <div class="greet-title">Profile <span>Settings</span></div>
+          <div class="greet-sub">All your saved Navify data in one place.</div>
+        </div>
+      </header>
+
+      <section class="suggest-card" aria-label="Profile overview">
+        <div class="map-title">What lives here?</div>
+        <div class="map-description">
+          This page represents where Navify stores your profile settings, favorites, likes, saved
+          items, and other lists so they are easy to access when you travel.
+        </div>
+      </section>
+
+      <section class="suggest-card" aria-label="Examples of profile data">
+        <div class="map-title">Examples</div>
+        <ul class="menu-bullets">
+          <li>Saved destinations like home, school, work, or favorite cafes.</li>
+          <li>Favorite routes for driving or walking that you reuse often.</li>
+          <li>Trusted Circle lists of friends and family who can see your status.</li>
+          <li>Personal preferences such as your display name and avatar.</li>
+        </ul>
+        <div class="map-description description-gap">
+          On the main Navify app, these settings are powered by local storage and modals like the
+          avatar picker and name preferences.
+        </div>
+      </section>
+
+      <section class="suggest-card" aria-label="Account and security">
+        <div class="map-title">Account &amp; Security</div>
+        <div class="menu-settings">
+          <button class="menu-action-toggle" type="button" data-panel-toggle="#phonePanel">
+            Phone verification
+          </button>
+          <div class="menu-collapsible" id="phonePanel">
+            <label class="menu-field">
+              <span>Verified phone number</span>
+              <input class="input" id="settingsPhoneInput" placeholder="e.g. +63 9XX XXX XXXX" />
+            </label>
+            <div class="menu-actions-row">
+              <button class="button" id="sendSmsBtn" type="button">Send verification SMS</button>
+              <input class="input menu-code-input" id="settingsPhoneCodeInput" placeholder="SMS code" />
+              <button class="button secondary" id="confirmSmsBtn" type="button">Confirm code</button>
+            </div>
+          </div>
+
+          <button class="menu-action-toggle" type="button" data-panel-toggle="#passwordPanel">
+            Change password
+          </button>
+          <div class="menu-collapsible" id="passwordPanel">
+            <label class="menu-field">
+              <span>New password</span>
+              <input class="input" id="settingsPasswordInput" type="password" placeholder="New password" />
+            </label>
+            <button class="button" id="changePasswordBtn" type="button">Update password</button>
+          </div>
+
+          <button class="menu-action-toggle" type="button" data-panel-toggle="#emailPanel">
+            Email verification
+          </button>
+          <div class="menu-collapsible" id="emailPanel">
+            <button class="button ghost" id="verifyEmailBtn" type="button">Send email verification</button>
+          </div>
+
+          <button class="menu-theme-toggle toggle" id="pushToggleBtn" type="button">Push notifications: Off</button>
+
+          <button class="button danger" id="logoutBtn" type="button">Log out</button>
+        </div>
+        <div id="recaptcha-container" class="menu-recaptcha"></div>
+      </section>
+
+      <section class="suggest-card" aria-label="About Navify">
+        <div class="map-title">About Navify</div>
+        <div class="map-description">
+          Read the full story and see the Navify team details on the About page.
+        </div>
+        <a href="about.html" class="menu-link menu-link-inline">Read more about the team</a>
+      </section>
+
+      <button class="support-btn" onclick="window.location.href='home.html'">Back to Navify Home</button>
+      <div class="menu-copy footer-copy">&copy; Navify</div>
+    </div>
+  </main>
+  <script src="theme.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="auth/firebase-init.js"></script>
+  <script src="auth/firebase-auth.js"></script>
+  <script src="profile-settings.js"></script>
+</body>
+</html>

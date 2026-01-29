@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navify • Guide</title>
+  <link rel="stylesheet" href="CSS%20KO%20ITO%20SA%20APP.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+  <main class="scene" aria-label="Navify guide">
+    <div class="content guide-layout">
+      <div class="logo">Navify</div>
+      <div class="tagline">Guide Mode</div>
+
+      <section class="map-preview guide-full-width">
+        <div class="map-title" id="guideTitle">Routing to destination</div>
+        <div class="map-description" id="guideDesc">Live guidance is active.</div>
+        <div id="guideMap" class="map-live" aria-label="Guide map"></div>
+      </section>
+
+      <section class="suggest-card guide-full-width">
+        <div class="map-title">Route updates</div>
+        <div class="map-description">You’ll receive live notifications while moving.</div>
+        <div class="live-list" id="guideNotifs"></div>
+      </section>
+
+      <div class="guide-actions">
+        <button class="button ghost" id="backBtn">Back</button>
+        <button class="button" id="shareGuideBtn">Share Live</button>
+      </div>
+    </div>
+  </main>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script src="guide.js"></script>
+</body>
+</html>

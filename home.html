@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navify • Home</title>
+  <link rel="stylesheet" href="CSS%20KO%20ITO%20SA%20APP.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+  <main class="scene" aria-label="Navify home">
+    <div class="glass-ring" aria-hidden="true"></div>
+    <span class="glow-line" aria-hidden="true"></span>
+    <span class="glow-line bottom" aria-hidden="true"></span>
+
+    <div class="home" aria-label="Navify home">
+      <header class="home-header">
+        <div class="profile">
+          <button class="avatar" id="avatarBtn" aria-label="Edit avatar">
+            <img id="avatarImg" alt="User avatar" />
+            <span class="avatar-ring" aria-hidden="true"></span>
+          </button>
+          <div class="greeting">
+            <div class="greet-title">Hi, <span id="userName">Name</span></div>
+            <div class="greet-sub">Ready to travel around the Philippines?</div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="social-square" id="openShareModal" aria-label="Share with trusted circle">
+            <span>+</span>
+          </button>
+          <button class="menu-btn" id="menuBtn" aria-label="Preferences menu">☰</button>
+        </div>
+      </header>
+
+      <div class="notif-bar" id="notifBar">
+        <span class="notif-dot"></span>
+        <span>Trusted Circle ready • Tap + to invite friends & family</span>
+        <button class="share-pill" id="shareToggle">Share: Off</button>
+      </div>
+
+      <section class="location-card">
+        <div class="location-fields">
+          <label>
+            <span>Location</span>
+            <input class="input" id="locationInput" placeholder="Detecting your location" />
+          </label>
+          <label>
+            <span>Destination</span>
+            <input class="input" id="destinationInput" placeholder="Where to in PH?" />
+          </label>
+        </div>
+      </section>
+
+      <section class="quick-grid">
+        <button class="quick-card" id="transportCard">
+          <div class="quick-title">Favorite places</div>
+          <div class="quick-sub">Save your go-to spots</div>
+        </button>
+        <button class="quick-card" id="categoryCard">
+          <div class="quick-title">Trip ideas</div>
+          <div class="quick-sub">Beach, food, city tours</div>
+        </button>
+      </section>
+
+      <section class="map-preview" id="mapPreview">
+        <div class="map-title">Philippines travel map</div>
+        <div class="map-description" id="mapDescription">Enable location to see walking times to famous places and safe routes in Metro Manila, Cebu, and Davao.</div>
+        <div class="map-modes" aria-label="Travel mode">
+          <button class="mode-btn active" data-route-mode="walk">🚶 Safe Walk</button>
+          <span class="eta-label" id="etaLabel">ETA: --</span>
+        </div>
+        <div id="map" class="map-live" aria-label="Live map"></div>
+        <button class="map-chip" id="walkRouteBtn" type="button" aria-label="Start safe walk on the map">Guide me there (walk)</button>
+      </section>
+
+      <section class="suggest-card" aria-label="Suggestions">
+        <div class="map-title">Suggestions near you</div>
+        <div class="map-description" id="suggestionsHint">Set a destination to see nearby places and safe stops.</div>
+        <div class="suggest-list" id="suggestList"></div>
+        <div class="map-description" id="safetyNote">Safety status: waiting for route selection.</div>
+      </section>
+
+      <section class="live-card" aria-label="Trusted circle">
+        <div class="live-header">
+          <div>
+            <div class="map-title">Trusted Circle</div>
+            <div class="map-description" id="liveStatus">Live updates are off</div>
+          </div>
+        </div>
+        <div class="live-list" id="contactList"></div>
+      </section>
+
+      <button class="support-btn" onclick="window.location.href='Contact support.html'">Contact Support</button>
+    </div>
+
+    <div class="modal" id="avatarModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Choose avatar">
+        <div class="modal-title">Choose Avatar</div>
+        <div class="avatar-grid" id="avatarGrid"></div>
+        <label class="upload-btn">
+          Upload from device
+          <input id="avatarUpload" type="file" accept="image/*" hidden />
+        </label>
+        <button class="modal-close" data-close="#avatarModal">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="transportModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Favorite places">
+        <div class="modal-title">Favorite Places</div>
+        <div class="transport-list" id="transportList"></div>
+        <button class="modal-close" data-close="#transportModal">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="categoryModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Trip ideas and collections">
+        <div class="modal-title">Trip Ideas &amp; Collections</div>
+        <div class="trip-ideas-layout">
+          <div class="category-grid" id="categoryGrid"></div>
+          <div class="trip-places" id="tripPlaces"></div>
+        </div>
+        <button class="modal-close" data-close="#categoryModal">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="shareModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Add trusted contact">
+        <div class="modal-title">Add trusted contact</div>
+        <div class="form">
+          <input class="input" id="contactInput" placeholder="Friend or family email" />
+        </div>
+        <button class="button" id="addContactBtn">Send invite</button>
+        <button class="modal-close" data-close="#shareModal">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="requestModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Location request">
+        <div class="modal-title">Location request</div>
+        <div class="map-description" id="requestText">Someone wants to share location with you.</div>
+        <div class="request-actions">
+          <button class="button" id="acceptRequestBtn">Accept</button>
+          <button class="button ghost" id="denyRequestBtn">Deny</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="locationModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Location permission">
+        <div class="modal-title">Enable Location</div>
+        <div class="map-description">Navify uses your live location to show nearby transport and routes in the Philippines.</div>
+        <button class="button" id="allowLocationBtn">Allow location</button>
+        <button class="modal-close" data-close="#locationModal">Not now</button>
+      </div>
+    </div>
+
+    <div class="modal" id="prefsModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-label="Preferences">
+        <div class="modal-title">Preferences</div>
+        <div class="form">
+          <input class="input" id="nameInput" placeholder="Your name" />
+        </div>
+        <button class="button" id="savePrefsBtn">Save</button>
+        <button class="modal-close" data-close="#prefsModal">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="menuModal" aria-hidden="true">
+      <div class="modal-card menu-panel" role="dialog" aria-label="Navify menu and info">
+        <header class="menu-header">
+          <div>
+            <div class="menu-title">Navify Menu</div>
+            <div class="menu-subtitle">Travel with your circle</div>
+          </div>
+          <button class="modal-close" data-close="#menuModal" aria-label="Close menu">
+            &times;
+          </button>
+        </header>
+
+        <section class="menu-section">
+          <div class="menu-section-label">Theme</div>
+          <button class="menu-theme-toggle toggle" type="button">Light Mode</button>
+        </section>
+
+        <section class="menu-section">
+          <div class="menu-section-label">Account &amp; Security</div>
+          <div class="menu-settings">
+            <button class="menu-action-toggle" type="button" data-panel-toggle="#phonePanel">
+              Phone verification
+            </button>
+            <div class="menu-collapsible" id="phonePanel">
+              <label class="menu-field">
+                <span>Verified phone number</span>
+                <input class="input" id="settingsPhoneInput" placeholder="e.g. +63 9XX XXX XXXX" />
+              </label>
+              <div class="menu-actions-row">
+                <button class="button" id="sendSmsBtn" type="button">Send verification SMS</button>
+                <input class="input menu-code-input" id="settingsPhoneCodeInput" placeholder="SMS code" />
+                <button class="button secondary" id="confirmSmsBtn" type="button">Confirm code</button>
+              </div>
+            </div>
+
+            <button class="menu-action-toggle" type="button" data-panel-toggle="#passwordPanel">
+              Change password
+            </button>
+            <div class="menu-collapsible" id="passwordPanel">
+              <label class="menu-field">
+                <span>New password</span>
+                <input class="input" id="settingsPasswordInput" type="password" placeholder="New password" />
+              </label>
+              <button class="button" id="changePasswordBtn" type="button">Update password</button>
+            </div>
+
+            <button class="menu-action-toggle" type="button" data-panel-toggle="#emailPanel">
+              Email verification
+            </button>
+            <div class="menu-collapsible" id="emailPanel">
+              <button class="button ghost" id="verifyEmailBtn" type="button">Send email verification</button>
+            </div>
+
+            <button class="menu-theme-toggle toggle" id="pushToggleBtn" type="button">Push notifications: Off</button>
+
+            <button class="button danger" id="logoutBtn" type="button">Log out</button>
+          </div>
+          <div id="recaptcha-container" class="menu-recaptcha"></div>
+        </section>
+
+        <section class="menu-section">
+          <div class="menu-section-label">About Navify</div>
+          <p class="menu-text">Open the About page to view the full team and app story.</p>
+          <a href="about.html" class="menu-link menu-link-inline">Open About Navify</a>
+        </section>
+
+        <section class="menu-section">
+          <div class="menu-section-label">Explore</div>
+          <nav class="menu-links" aria-label="Navify information pages">
+            <a href="profile-settings.html" class="menu-link">Profile Settings</a>
+            <a href="content-dead-zones.html" class="menu-link">Content Dead Zones</a>
+            <a href="core-features.html" class="menu-link">Core Features &amp; Navigator Guider</a>
+            <a href="single-cta.html" class="menu-link">Single CTA</a>
+            <a href="about.html" class="menu-link">About Navify App</a>
+            <a href="TEAM%20KO.html" class="menu-link">Navify Team</a>
+          </nav>
+        </section>
+
+        <footer class="menu-footer">
+          <div class="menu-footer-text">
+            Core travel actions like setting a destination, viewing the live map, and opening guide
+            mode stay on the main screen so you can start a trip in one tap.
+          </div>
+          <div class="menu-copy">&copy; Navify</div>
+        </footer>
+      </div>
+    </div>
+  </main>
+  <script src="theme.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="auth/firebase-init.js"></script>
+  <script src="auth/reset-local.js"></script>
+  <script src="auth/firebase-auth.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script src="auth/modal-core.js"></script>
+  <script src="JAVASCRIPT%20SA%20APP.js"></script>
+</body>
+</html>

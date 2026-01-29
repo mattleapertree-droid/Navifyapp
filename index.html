@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navify Your Travel Buddy</title>
+  <link rel="stylesheet" href="CSS%20KO%20ITO%20SA%20APP.css" />
+</head>
+<body>
+  <main class="scene" aria-label="Navify app">
+    <div class="glass-ring" aria-hidden="true"></div>
+    <span class="glow-line" aria-hidden="true"></span>
+    <span class="glow-line bottom" aria-hidden="true"></span>
+
+    <div class="content" id="authScreen">
+      <div class="logo">Navify</div>
+      <div class="tagline">Your Travel Buddy</div>
+
+      <div class="cta" aria-label="Authentication">
+        <button class="button" id="signInBtn">Sign In</button>
+        <button class="button secondary" id="signUpBtn">Sign Up</button>
+      </div>
+
+      <div class="toggle">White Mode</div>
+    </div>
+
+
+    <div id="authModals" aria-hidden="true">
+      <div class="modal" id="signInModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-label="Sign in options">
+          <div class="modal-title">Sign In</div>
+          <div class="form">
+            <input class="input" type="email" placeholder="Email" />
+            <input class="input" type="password" placeholder="Password" />
+          </div>
+          <div class="section-title">Sign in with</div>
+          <div class="socials">
+            <div class="social-btn">Google</div>
+          </div>
+          <button class="button" id="enterAppBtn">Enter App</button>
+          <button class="modal-close" data-close="#signInModal">Close</button>
+        </div>
+      </div>
+
+      <div class="modal" id="signUpModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-label="Create account">
+          <div class="modal-title">Sign Up</div>
+          <div class="form">
+            <input class="input" type="text" placeholder="Username" />
+            <input class="input" type="email" placeholder="Email" />
+            <input class="input" type="password" placeholder="Password" />
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" /> Remember my choice</label>
+            <label><input type="checkbox" /> Add to this device</label>
+          </div>
+          <button class="button" id="createAccountBtn">Create account</button>
+          <button class="modal-close" data-close="#signUpModal">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script src="theme.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="auth/firebase-init.js"></script>
+  <script src="auth/reset-local.js"></script>
+  <script src="auth/firebase-auth.js"></script>
+  <script src="auth/modal-core.js"></script>
+  <script src="auth/sign-in.js"></script>
+  <script src="auth/sign-up.js"></script>
+</body>
+</html>
