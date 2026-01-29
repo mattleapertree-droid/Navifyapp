@@ -54,6 +54,8 @@ const LIVE_KEY = 'navify-live-contacts';
 const CONTACT_KEY = 'navify-contacts';
 const NAME_KEY = 'navify-name';
 const FAVORITES_KEY = 'navify-favorites';
+const GUIDE_TAP_COUNT = 3;
+const GUIDE_TAP_TIMEOUT_MS = 2500;
 
 avatarBtn?.addEventListener('click', () => openModal(avatarModal));
 transportCard?.addEventListener('click', () => openModal(transportModal));
@@ -404,12 +406,12 @@ function initMap() {
       mapDescription.textContent = 'Destination set from map. Tap "Guide me there" or tap the map 3 times to open guide mode.';
     }
     const now = Date.now();
-    if (now - lastMapTapAt > 2500) {
+    if (now - lastMapTapAt > GUIDE_TAP_TIMEOUT_MS) {
       mapTapCount = 0;
     }
-    lastMapTapAt = now;
     mapTapCount += 1;
-    if (mapTapCount >= 3) {
+    lastMapTapAt = now;
+    if (mapTapCount >= GUIDE_TAP_COUNT) {
       mapTapCount = 0;
       window.location.href = 'guide.html';
     }
