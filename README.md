@@ -48,7 +48,7 @@ Visit: [https://mattleapertree-droid.github.io/Navifyapp/](https://mattleapertre
 ## Support
 
 Email: mattymiah10@gmail.com  
-Phone: 09766299248
+Phone: +63 976 629 9248
 
 ---
 
