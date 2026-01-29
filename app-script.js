@@ -213,7 +213,7 @@ const tripIdeaSets = {
       rating: '4.5',
       lat: 13.679,
       lng: 121.406,
-      image: 'https://source.unsplash.com/featured/?beach,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/2/2d/Laiya_Beach_Batangas_2022.jpg'
     },
     {
       name: 'White Beach Station 2',
@@ -222,7 +222,7 @@ const tripIdeaSets = {
       rating: '4.8',
       lat: 11.959,
       lng: 121.93,
-      image: 'https://source.unsplash.com/featured/?boracay,beach'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/6/67/Boracay_White_Beach%2C_Panay_Island%2C_Philippines.jpg'
     }
   ],
   'City night walks': [
@@ -233,7 +233,7 @@ const tripIdeaSets = {
       rating: '4.6',
       lat: 14.5506,
       lng: 121.0537,
-      image: 'https://source.unsplash.com/featured/?city,night,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Bonifacio_High_Street_2022.jpg'
     },
     {
       name: 'Roxas Boulevard Baywalk',
@@ -242,7 +242,7 @@ const tripIdeaSets = {
       rating: '4.4',
       lat: 14.574,
       lng: 120.979,
-      image: 'https://source.unsplash.com/featured/?manila,baywalk'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Roxas_Boulevard_Baywalk_Manila_2022.jpg'
     }
   ],
   'Food trips': [
@@ -253,7 +253,7 @@ const tripIdeaSets = {
       rating: '4.5',
       lat: 14.645,
       lng: 121.058,
-      image: 'https://source.unsplash.com/featured/?food,street,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Maginhawa_Street_in_Quezon_City.jpg'
     },
     {
       name: 'Larsian BBQ',
@@ -262,7 +262,7 @@ const tripIdeaSets = {
       rating: '4.3',
       lat: 10.309,
       lng: 123.893,
-      image: 'https://source.unsplash.com/featured/?bbq,cebu'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Larsian_BBQ_cebu.jpg'
     }
   ],
   'Mall days': [
@@ -273,7 +273,7 @@ const tripIdeaSets = {
       rating: '4.6',
       lat: 14.535,
       lng: 120.982,
-      image: 'https://source.unsplash.com/featured/?mall,asia,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/9/96/SM_Mall_of_Asia_Arena_and_Shopping_Mall.jpg'
     },
     {
       name: 'Ayala Center Cebu',
@@ -282,7 +282,7 @@ const tripIdeaSets = {
       rating: '4.5',
       lat: 10.317,
       lng: 123.906,
-      image: 'https://source.unsplash.com/featured/?mall,cebu'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Ayala_Center_Cebu_2017.jpg'
     }
   ],
   'Family day out': [
@@ -293,7 +293,7 @@ const tripIdeaSets = {
       rating: '4.5',
       lat: 14.582,
       lng: 120.979,
-      image: 'https://source.unsplash.com/featured/?park,manila'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Rizal_Park_from_the_sky.jpg'
     },
     {
       name: "People's Park",
@@ -302,7 +302,7 @@ const tripIdeaSets = {
       rating: '4.4',
       lat: 7.071,
       lng: 125.6,
-      image: 'https://source.unsplash.com/featured/?park,davao'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/People%27s_Park_Davao.jpg'
     }
   ],
   'Commute to work': [
@@ -313,7 +313,7 @@ const tripIdeaSets = {
       rating: '4.3',
       lat: 14.586,
       lng: 121.061,
-      image: 'https://source.unsplash.com/featured/?ortigas,skyline'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Ortigas_Mandaluyong_Pasig_%282017%29.jpg'
     },
     {
       name: 'Makati CBD',
@@ -322,7 +322,7 @@ const tripIdeaSets = {
       rating: '4.6',
       lat: 14.554,
       lng: 121.024,
-      image: 'https://source.unsplash.com/featured/?makati,city'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Makati_City_skyline_%282017%29.jpg'
     }
   ],
   'Study sessions': [
@@ -333,7 +333,7 @@ const tripIdeaSets = {
       rating: '4.7',
       lat: 14.655,
       lng: 121.064,
-      image: 'https://source.unsplash.com/featured/?university,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Sunken_Garden_%28UP_Diliman%29.jpg'
     },
     {
       name: 'Cafe study spots (BGC)',
@@ -342,7 +342,7 @@ const tripIdeaSets = {
       rating: '4.5',
       lat: 14.553,
       lng: 121.048,
-      image: 'https://source.unsplash.com/featured/?coffee,shop,philippines'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/BGC_-_Uptown_Mall_%282018%29.jpg'
     }
   ],
   'Weekend getaways': [
@@ -353,7 +353,7 @@ const tripIdeaSets = {
       rating: '4.6',
       lat: 14.11,
       lng: 120.94,
-      image: 'https://source.unsplash.com/featured/?tagaytay,view'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Taal_Lake_and_Volcano_View_from_Tagaytay_City.jpg'
     },
     {
       name: 'Baguio Session Road',
@@ -362,7 +362,7 @@ const tripIdeaSets = {
       rating: '4.6',
       lat: 16.412,
       lng: 120.596,
-      image: 'https://source.unsplash.com/featured/?baguio,city'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/a/ad/Session_Road%2C_Baguio_City.jpg'
     }
   ]
 };
@@ -409,6 +409,16 @@ function clearIdeaMarkers() {
   ideaMarkers = [];
 }
 
+function setGuideTarget(place) {
+  if (!place) return;
+  const target = {
+    lat: place.lat,
+    lng: place.lng,
+    label: place.name
+  };
+  localStorage.setItem('navify-guide-target', JSON.stringify(target));
+}
+
 function showPlaceOnMap(place) {
   if (!place) return;
   if (!map) initMap();
@@ -423,6 +433,7 @@ function showPlaceOnMap(place) {
   if (mapDescription) {
     mapDescription.textContent = `Previewing ${place.name}. Turn on location to see how long it takes to get there.`;
   }
+  setGuideTarget(place);
   if (userMarker) {
     drawRoute(place.lat, place.lng, true);
   }
@@ -797,6 +808,11 @@ function renderTripPlaces(category) {
     img.className = 'trip-place-image';
     img.src = place.image;
     img.alt = place.name;
+    img.addEventListener('error', () => {
+      if (img.dataset.fallback) return;
+      img.dataset.fallback = 'true';
+      img.src = 'assets/1.png';
+    });
 
     const main = document.createElement('div');
     main.className = 'trip-place-main';
@@ -842,8 +858,18 @@ function renderTripPlaces(category) {
       }
     });
 
+    const guideBtn = document.createElement('button');
+    guideBtn.className = 'button secondary trip-view-btn trip-guide-btn';
+    guideBtn.type = 'button';
+    guideBtn.textContent = 'Open live guide';
+    guideBtn.addEventListener('click', () => {
+      setGuideTarget(place);
+      window.location.href = 'guide.html';
+    });
+
     actions.appendChild(travelBtn);
     actions.appendChild(saveBtn);
+    actions.appendChild(guideBtn);
     main.appendChild(nameEl);
     main.appendChild(meta);
     main.appendChild(actions);
