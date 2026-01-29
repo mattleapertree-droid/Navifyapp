@@ -932,7 +932,12 @@ walkRouteBtn?.addEventListener('click', () => {
     }
   }
   const target = lastRouteTarget || parsedTarget;
-  if (!target) {
+  const hasValidTarget = target &&
+    typeof target.lat === 'number' &&
+    typeof target.lng === 'number' &&
+    !Number.isNaN(target.lat) &&
+    !Number.isNaN(target.lng);
+  if (!hasValidTarget) {
     if (mapDescription) {
       mapDescription.textContent = 'Tap on the map or choose a Trip idea first, then press "Guide me there".';
     }
