@@ -5,6 +5,7 @@ function bindSignUp() {
   const usernameInput = signUpModal?.querySelector('input[type="text"]');
   const emailInput = signUpModal?.querySelector('input[type="email"]');
   const passwordInput = signUpModal?.querySelector('input[type="password"]');
+  const termsConsent = document.getElementById('termsConsent');
   const authScreen = document.getElementById('authScreen');
 
   signUpBtn?.addEventListener('click', () => openModal(signUpModal));
@@ -15,6 +16,10 @@ function bindSignUp() {
     const username = usernameInput?.value.trim() || '';
     if (!email || !password) {
       alert('Please enter an email and password to create your Navify account.');
+      return;
+    }
+    if (!termsConsent?.checked) {
+      alert('Please agree to the Navify Terms & Conditions, including camera and location consent.');
       return;
     }
     try {

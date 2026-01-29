@@ -779,6 +779,11 @@ body.theme-light .map-chip {
   border-radius: 999px;
 }
 
+.trip-guide-btn {
+  flex: 1 1 100%;
+  justify-self: stretch;
+}
+
 body.theme-light .trip-place-card {
   background: #f5f7ff;
   border-color: rgba(100, 150, 220, 0.7);
